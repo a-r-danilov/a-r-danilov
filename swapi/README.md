@@ -1,28 +1,39 @@
-# Проект SWAPI
+# SWAPI Data Collector
 
-* Создайте [виртуальное окружение](https://docs.python.org/3/library/venv.html) и активируйте его:
-```shell script
-python3 -m venv venv
-```
+Простой инструмент для сбора данных из Star Wars API (SWAPI) с сохранением в локальные файлы.
 
-* Активируйте его:
-```shell script
-source venv/bin/activate
-```
-или в Windowns
-```shell script
-source venv/Scripts/activate
-```
+## Что делает
 
-* Обновите pip до последней версии:
-```shell script
-pip install --upgrade pip
-```
-* Установите зависимости:
-```shell script
-pip install -r requirements.txt
-```
-* После выполнения задания убедитесь что успешно пройдены все тесты
-```shell script
-pytest
-```
+- Отправляет запросы к SWAPI (`swapi.dev`).
+- Получает список категорий (films, people, planets и др.).
+- Сохраняет данные первой страницы каждой категории в отдельные TXT‑файлы в папке `data/`.
+
+## Архитектура
+
+1. **`APIRequester`** — базовый класс для HTTP‑запросов:
+   - хранит `base_url`;
+   - метод `get()` выполняет GET‑запрос и проверяет статус;
+   - обрабатывает ошибки сети и HTTP.
+
+2. **`SWRequester`** — наследник для работы с SWAPI:
+   - `get_sw_categories()` — возвращает список категорий;
+   - `get_sw_info(sw_type)` — получает данные по категории.
+
+3. **`save_sw_data()`** — функция-оркестратор:
+   - создаёт папку `data/`;
+   - собирает данные по всем категориям;
+   - сохраняет в файлы вида `data/<категория>.txt`.
+
+
+## Как запустить
+
+1. Установите зависимость:
+   ```bash
+   pip install requests
+
+2.     Запустите скрипт:
+   ```bash
+   python3 swapi.py
+
+3. Проверьте папку data/ — там появятся файлы с данными.
+
