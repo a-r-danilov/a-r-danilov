@@ -17,8 +17,6 @@ CREATE TABLE IF NOT EXISTS raw_data.sales(
 --импортируем данные из csv-файла
 --чтобы импортировать в DBeaver, нужны права суперпользователя базы
 --получилось импортировать через терминал через psql
---psql -h c-c9qe9p3arimg4hftnfrh.rw.mdb.yandexcloud.net -p 6432 -U de_start_20250410_89fa5a4727 -d playground_start_20250410_89fa5a4727
---PSW: 5217d630cbfb44549f3a46bca87e826d
 \copy raw_data.sales
 FROM '/home/linadmin/Загрузки/cars.csv'
 WITH CSV HEADER DELIMITER ',' NULL 'null';
