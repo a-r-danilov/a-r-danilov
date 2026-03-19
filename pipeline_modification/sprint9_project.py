@@ -84,7 +84,7 @@ def get_increment(date, ti):
 
 def upload_data_to_staging(filename, date, pg_table, pg_schema, ti):
     increment_id = ti.xcom_pull(key='increment_id')
-    s3_filename = f'https://storage.yandexcloud.net/s3-sprint3/cohort_{cohort}/{nickname}/project/{increment_id}/{filename}'
+    s3_filename = f'***_{cohort}/{nickname}/project/{increment_id}/{filename}'
     print(s3_filename)
     local_filename = date.replace('-', '') + '_' + filename
     print(local_filename)
@@ -132,8 +132,8 @@ def modify_table(table):
 
 
 args = {
-    "owner": "a-danilov-r",
-    'email': ['a-danilov-r@yandex.ru'],
+    "owner": "",
+    'email': [''],
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0
